@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const taskRoutes = require("./routes/task");
 const studentRoute = require("./routes/studentRoute");
 const courseRoute = require("./routes/courseRoute");
+const enrollmentRoute = require("./routes/enrollmentRoute");
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -28,6 +29,7 @@ connectDB();
 app.use("/api/tasks", taskRoutes);
 app.use("/api/students", studentRoute);
 app.use("/api/courses", courseRoute);
+app.use("/api/enrollments", enrollmentRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
