@@ -1,6 +1,4 @@
 const Student = require("../models/Student");
-const Task = require("../models/Student");
-const mongoose = require("mongoose");
 
 exports.createStudent = async (req, res) => {
   try {
