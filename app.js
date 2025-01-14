@@ -5,7 +5,7 @@ const logger = require("./middlewares/logger");
 const connectDB = require("./config/db");
 
 const taskRoutes = require("./routes/task");
-
+const studentRoute = require("./routes/studentRoute");
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -25,6 +25,7 @@ connectDB();
 // Routes
 
 app.use("/api/tasks", taskRoutes);
+app.use("/api/students", studentRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
