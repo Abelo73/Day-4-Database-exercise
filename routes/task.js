@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const Task = require("../models/Task");
-const { Types } = require("mongoose");
 
 const taskController = require("../controllers/taskController");
 
@@ -11,7 +9,8 @@ router.post("/", taskController.createTask);
 
 // Read all tasks
 
-router.get("/", taskController.getAllTasks);
+// router.get("/", taskController.getAllTasks);
+router.get("/", taskController.getAllTasksWithPagination);
 
 // Read one task
 

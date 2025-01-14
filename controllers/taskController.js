@@ -27,6 +27,35 @@ exports.getAllTasks = async (req, res) => {
   }
 };
 
+exports.getAllTasksWithPagination = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const skip = (page - 1) * limit;
+    const totalTasks = await Task.countDocuments();
+    const tasks = await Task.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    if (tasks.length === 0) {
+      return res.status(404).json({ message: "No tasks found" });
+    }
+    res.status(200).json({
+      message: "Tasks fetched successfully",
+      tasks,
+      pagination: {
+        totalTasks,
+        totalElement: Math.ceil(totalTasks / limit),
+        currentPage: page,
+        limit: limit,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getTasksById = async (req, res) => {
   try {
     const taskId = req.params.id;

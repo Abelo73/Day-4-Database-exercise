@@ -1,5 +1,3 @@
-const morgan = require("morgan");
-
 const logger = (req, res, next) => {
   const startTime = Date.now();
   res.on("finish", () => {
