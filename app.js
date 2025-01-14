@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Logger middleware
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 app.use(logger);
 
 // Database connection
